@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"The pascal trangle"""
 def pascal_triangle(n):
     """creates the pascal triangle array"""
     arr = [];

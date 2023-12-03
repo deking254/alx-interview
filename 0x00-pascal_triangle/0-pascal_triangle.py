@@ -1,4 +1,6 @@
+#!/usr/bin/python3
 def pascal_triangle(n):
+    """creates the pascal triangle array"""
     arr = [];
     for i in range(1, n+1):
         arr.append([]);

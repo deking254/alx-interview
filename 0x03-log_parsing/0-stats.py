@@ -16,10 +16,7 @@ try:
         lines += 1
         line_array = line.split(' ')
         if len(line_array) == 9:
-            try:
-                file_size += int(line_array[8])
-            except Exception as e:
-                lines -= 1
+            file_size += int(line_array[8])
             if (line_array[7] == '200'):
                 count_200 += 1
             if (line_array[7] == '301'):
@@ -36,8 +33,6 @@ try:
                 count_405 += 1
             if (line_array[7] == '500'):
                 count_500 += 1
-        else:
-            lines -= 1
         if lines == 10:
             lines = 0
             print('File size: {}'.format(file_size))

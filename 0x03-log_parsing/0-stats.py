@@ -39,6 +39,7 @@ try:
         else:
             lines -= 1
         if lines == 10:
+            lines = 0
             print('File size: {}'.format(file_size))
             if (count_200 > 0):
                 print('{}: {}'.format(200, count_200))
@@ -56,16 +57,6 @@ try:
                 print('{}: {}'.format(405, count_405))
             if (count_500 > 0):
                 print('{}: {}'.format(500, count_500))
-            file_size = 0
-            lines = 0
-            count_200 = 0
-            count_301 = 0
-            count_400 = 0
-            count_401 = 0
-            count_403 = 0
-            count_404 = 0
-            count_405 = 0
-            count_500 = 0
 except KeyboardInterrupt as e:
     print('File size: {}'.format(file_size))
     if (count_200 > 0):

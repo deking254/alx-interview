@@ -7,7 +7,13 @@ try:
     file_size = 0
     lines = 0
     status_counts = defaultdict(int)
-
+    status_counts['200'] = 0
+    status_counts['301'] = 0
+    status_counts['400'] = 0
+    status_counts['401'] = 0
+    status_counts['403'] = 0
+    status_counts['404'] = 0
+    status_counts['500'] = 0
     for line in stdin:
         lines += 1
         line_array = line.split(' ')

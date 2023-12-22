@@ -15,10 +15,12 @@ try:
             try:
                 file_size += int(line_array[8])
             except ValueError:
-                pass
+                continue
 
             status_code = line_array[7]
             status_counts[status_code] += 1
+        else:
+            continue
 
         if lines == 10:
             lines = 0

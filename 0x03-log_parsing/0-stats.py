@@ -6,7 +6,10 @@ from collections import defaultdict
 def int_checker(value: str):
     try:
         a = int(value)
-        return True
+        if a == 200 or 301 or 400 or 401 or 403 or 404 or 405 or 500:
+            return True
+        else:
+            return False
     except Exception:
         return False
 

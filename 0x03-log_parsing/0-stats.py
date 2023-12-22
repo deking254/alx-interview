@@ -3,6 +3,62 @@
 from sys import stdin
 from collections import defaultdict
 
+def int_checker(value: str):
+    try:
+        a = int(value)
+        return True
+    except Exception:
+        return False
+
+
+def checker(line_array):
+    """checks if the format is up to par"""
+    counter = 0
+    if len(line_array) != 9:
+        return False
+    for item_index in range(0, len(line_array)):
+        if item_index == 1:
+            if line_array[item_index] == '-':
+                continue
+            else:
+                return False
+        if item_index == 2:
+            if line_array[item_index][0] == '[':
+                continue
+            else:
+                return False
+        if item_index == 3:
+            if line_array[item_index].endswith(']'):
+                continue
+            else:
+                return False
+        if item_index == 4:
+            if line_array[item_index] == '"GET':
+                continue
+            else:
+                return False
+        if item_index == 5:
+            if line_array[item_index] == '/projects/260':
+                continue
+            else:
+                return False
+        if item_index == 6:
+            if line_array[item_index] == 'HTTP/1.1"':
+                continue
+            else:
+                return False
+        if item_index == 7:
+            if int_checker(line_array[item_index]):
+                continue
+            else:
+                return False
+        if item_index == 8:
+            if int_checker(line_array[item_index]):
+                continue
+            else:
+                return False
+    return True
+
 try:
     file_size = 0
     lines = 0
@@ -17,12 +73,8 @@ try:
     for line in stdin:
         lines += 1
         line_array = line.split(' ')
-        if len(line_array) == 9:
-            try:
-                file_size += int(line_array[8])
-            except ValueError:
-                continue
-
+        if checker(line_array):
+            file_size += int(line_array[8])
             status_code = line_array[7]
             status_counts[status_code] += 1
         else:

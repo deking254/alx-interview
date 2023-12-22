@@ -72,6 +72,7 @@ try:
     status_counts['401'] = 0
     status_counts['403'] = 0
     status_counts['404'] = 0
+    status_counts['405'] = 0
     status_counts['500'] = 0
     for line in stdin:
         lines += 1

@@ -68,6 +68,7 @@ try:
     file_size = 0
     lines = 0
     zero_file_printed = False
+    successful_log = 0
     status_counts = defaultdict(int)
     status_counts['200'] = 0
     status_counts['301'] = 0
@@ -85,7 +86,9 @@ try:
                 file_size += int(line_array[8])
                 status_code = line_array[7]
                 status_counts[status_code] += 1
+                successful_log += 1
             else:
+                lines = successful_log
                 continue
             if file_size == 0:
                 zero_file_printed = True
@@ -100,7 +103,9 @@ try:
                 file_size += int(line_array[8])
                 status_code = line_array[7]
                 status_counts[status_code] += 1
+                successful_log += 1
             else:
+                lines = successful_log
                 continue
     if lines % 10 != 0:
         if file_size == 0:
@@ -116,5 +121,5 @@ except KeyboardInterrupt:
         if count > 0:
             print('{}: {}'.format(code, count))
 if file_size == 0:
-    if zero_file_printed == False:
+    if zero_file_printed is False:
         print('File size: {}'.format(file_size))

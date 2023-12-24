@@ -110,3 +110,5 @@ except KeyboardInterrupt:
     for code, count in status_counts.items():
         if count > 0:
             print('{}: {}'.format(code, count))
+if file_size == 0:
+    print('File size: {}'.format(file_size))

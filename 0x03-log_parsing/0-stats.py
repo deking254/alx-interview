@@ -82,6 +82,7 @@ try:
             status_code = line_array[7]
             status_counts[status_code] += 1
         else:
+            line -= 1
             continue
 
         if lines == 10:

@@ -3,6 +3,7 @@
 from sys import stdin
 from collections import defaultdict
 
+
 def process_logs(stdin):
     """the main core of the app"""
     try:
@@ -18,6 +19,7 @@ def process_logs(stdin):
         status_counts['405'] = 0
         status_counts['500'] = 0
         for line in stdin:
+            
             lines += 1
             if lines == 11:
                 print('File size: {}'.format(file_size))
@@ -37,6 +39,10 @@ def process_logs(stdin):
                         continue
                 else:
                     continue
+        print('File size: {}'.format(file_size))
+        for code, count in status_counts.items():
+            if count > 0:
+                print('{}: {}'.format(code, count))
     except KeyboardInterrupt:
         print('File size: {}'.format(file_size))
         for code, count in status_counts.items():

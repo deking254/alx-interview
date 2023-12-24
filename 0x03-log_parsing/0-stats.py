@@ -76,21 +76,20 @@ try:
     status_counts['500'] = 0
     for line in stdin:
         lines += 1
-        line_array = line.split(' ')
-        if checker(line_array):
-            file_size += int(line_array[8])
-            status_code = line_array[7]
-            status_counts[status_code] += 1
-        else:
-            line -= 1
-            continue
-
         if lines == 10:
-            lines = 0
             print('File size: {}'.format(file_size))
             for code, count in status_counts.items():
                 if count > 0:
                     print('{}: {}'.format(code, count))
+            lines = 0
+        else:
+            line_array = line.split(' ')
+            if checker(line_array):
+                file_size += int(line_array[8])
+                status_code = line_array[7]
+                status_counts[status_code] += 1
+            else:
+                continue
 
 except KeyboardInterrupt:
     print('File size: {}'.format(file_size))

@@ -67,6 +67,7 @@ def checker(line_array):
 try:
     file_size = 0
     lines = 0
+    zero_file_printed = False
     status_counts = defaultdict(int)
     status_counts['200'] = 0
     status_counts['301'] = 0
@@ -86,6 +87,8 @@ try:
                 status_counts[status_code] += 1
             else:
                 continue
+            if file_size == 0:
+                zero_file_printed = True
             print('File size: {}'.format(file_size))
             for code, count in status_counts.items():
                 if count > 0:
@@ -100,6 +103,8 @@ try:
             else:
                 continue
     if lines % 10 != 0:
+        if file_size == 0:
+            zero_file_printed = True
         print('File size: {}'.format(file_size))
         for code, count in status_counts.items():
             if count > 0:
@@ -111,4 +116,5 @@ except KeyboardInterrupt:
         if count > 0:
             print('{}: {}'.format(code, count))
 if file_size == 0:
-    print('File size: {}'.format(file_size))
+    if zero_file_printed == False:
+        print('File size: {}'.format(file_size))

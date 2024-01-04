@@ -12,7 +12,7 @@ def validUTF8(data):
         try:
             b.decode('utf-8')
             return True
-        except Exception
+        except Exception:
             return False
     except Exception:
         return False

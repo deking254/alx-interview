@@ -8,7 +8,11 @@ def validUTF8(data):
     of the data utf8 encoding
     """
     try:
-        bytes(data)
-        return True
+        b = bytes(data)
+        try:
+            b.decode('utf-8')
+            return True
+        except Exception
+            return False
     except Exception:
         return False

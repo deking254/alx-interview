@@ -8,10 +8,7 @@ def validUTF8(data):
     of the data utf8 encoding
     """
     try:
-        b = bytes(data).decode('utf-8').isprintable()
-        if b:
-            return True
-        else:
-            return False
+        b = bytes(data).decode('utf-8')
+        return True
     except Exception:
         return False

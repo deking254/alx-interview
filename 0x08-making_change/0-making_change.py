@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""project aimed at finding the minimal number of coins for change"""
 def makeChange(coins, total):
     """returns the fewest number of coins"""
     coins.reverse()

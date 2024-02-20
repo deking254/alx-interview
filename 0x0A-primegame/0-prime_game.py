@@ -1,42 +1,42 @@
 #!/usr/bin/python3
 """prime game implementation module"""
 
+
 def isWinner(x, nums):
     """returns the winner of the prime game"""
-    ben = False
-    maria = True
     ben_round_wins = []
     maria_round_wins = []
     for limit in nums:
         ben_count = 0
         maria_count = 0
         captured_primes = []
+        player = 2
         for number in range(1, limit + 1):
-            
+            found = False
             if len(captured_primes) > 0:
                 if check_number_validity(number, captured_primes):
                     if check_prime(number):
+                        found = True
                         captured_primes.append(number)
-                        if ben:
-                            ben_count += 1
-                            ben = False
-                            maria = True
-                        if maria:
+                        if player % 2 == 0:
                             maria_count += 1
-                            maria = False
-                            ben = True
+                        else:
+                            ben_count += 1
+                        player += 1
             else:
                 if check_prime(number):
                     captured_primes.append(number)
-                    if ben:
-                        ben_count += 1
-                        ben = False
-                        maria = True
-                    if maria:
+                    found = True
+                    if player % 2 == 0:
                         maria_count += 1
-                        maria = False
-                        ben = True
-        print(captured_primes)
+                    else:
+                        ben_count += 1
+                    player += 1
+        if found is False:
+            if player % 2 == 0:
+                maria_count -= 1
+            else:
+                ben_count -= 1
         if ben_count > maria_count:
             ben_round_wins.append(1)
             maria_round_wins.append(0)
@@ -46,21 +46,32 @@ def isWinner(x, nums):
         if maria_count == ben_count:
             ben_round_wins.append(0)
             maria_round_wins.append(0)
-    print(ben_round_wins)
-    print(maria_round_wins)
-    return 'Ben'
+    ben_points = 0
+    maria_points = 0
+    for i in ben_round_wins:
+        ben_points += i
+    for i in maria_round_wins:
+        maria_points += i
+    if ben_points > maria_points:
+        return 'Ben'
+    if ben_points < maria_points:
+        return 'Maria'
+    if ben_points == maria_points:
+        return None
+
 
 def check_prime(number):
     """checks if a number is a prime number"""
-    i = 0;
+    i = 0
     if number == 1:
         return False
     for divisible in range(1, number):
         if number % divisible == 0:
             i += 1
             if i > 1:
-                return False;
+                return False
     return True
+
 
 def check_number_validity(number, captured_primes):
     """checks if a number is avaible of use of has been removed"""

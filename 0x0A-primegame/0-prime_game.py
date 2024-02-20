@@ -13,32 +13,33 @@ def isWinner(x, nums):
         maria_count = 0
         captured_primes = []
         player = 2
-        for number in range(1, limit + 1):
-            found = False
-            if len(captured_primes) > 0:
-                if check_number_validity(number, captured_primes):
+        if limit >= 1:
+            for number in range(1, limit + 1):
+                found = False
+                if len(captured_primes) > 0:
+                    if check_number_validity(number, captured_primes):
+                        if check_prime(number):
+                            found = True
+                            captured_primes.append(number)
+                            if player % 2 == 0:
+                                maria_count += 1
+                            else:
+                                ben_count += 1
+                            player += 1
+                else:
                     if check_prime(number):
-                        found = True
                         captured_primes.append(number)
+                        found = True
                         if player % 2 == 0:
                             maria_count += 1
                         else:
                             ben_count += 1
                         player += 1
-            else:
-                if check_prime(number):
-                    captured_primes.append(number)
-                    found = True
-                    if player % 2 == 0:
-                        maria_count += 1
-                    else:
-                        ben_count += 1
-                    player += 1
-        if found is False:
-            if player % 2 == 0:
-                maria_count -= 1
-            else:
-                ben_count -= 1
+            if found is False:
+                if player % 2 == 0:
+                    maria_count -= 1
+                else:
+                    ben_count -= 1
         if ben_count > maria_count:
             ben_round_wins.append(1)
             maria_round_wins.append(0)

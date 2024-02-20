@@ -6,6 +6,8 @@ def isWinner(x, nums):
     """returns the winner of the prime game"""
     ben_round_wins = []
     maria_round_wins = []
+    if x <= 0:
+        return None
     for limit in nums:
         ben_count = 0
         maria_count = 0
